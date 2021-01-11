@@ -7,7 +7,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 const PORT = process.env.PORT || 5000;
-
+app.get('/', (req, res) => {
+  res.send({
+    msg: 'Welcome to Shopping cart app',
+    supportedRoutes: [
+      '/api/products :GET',
+      '/api/cart:userId : GET',
+      '/api/cart :POST',
+      '/api/orders/:userId : GET',
+    ],
+  });
+});
 app.post('/api/login', (req, res) => {
   const body = req.body;
   fs.readFile('data/users.json', 'utf8', function (err, data) {
